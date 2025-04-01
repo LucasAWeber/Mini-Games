@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -std=c99
 
 minigames: main.o hangman.o 2048.o wordle.o
-	gcc -Wall -std=c99 main.o -o minigames
+	$(CC) $(CFLAGS) main.o hangman.o 2048.o wordle.o -o minigames
 
 main.o: main.c hangman.h 2048.h wordle.h
 	$(CC) $(CFLAGS) -c main.c

@@ -9,28 +9,28 @@ int game_loop_2048 () {
     int valid = 0;
 
     srand(time(NULL));
-    fillBoard(board);
-    index = checkValid(board, validBoard);
-    newNumber(board, validBoard, index);
-    index = checkValid(board, validBoard);
-    newNumber(board, validBoard, index);
-    index = checkValid(board, validBoard);
-    printBoard(board);
+    fill_board_2048(board);
+    index = check_valid_2048(board, validBoard);
+    new_number_2048(board, validBoard, index);
+    index = check_valid_2048(board, validBoard);
+    new_number_2048(board, validBoard, index);
+    index = check_valid_2048(board, validBoard);
+    print_board_2048(board);
     while (1) {
-        logic(board);
-        index = checkValid(board, validBoard);
-        newNumber(board, validBoard, index);
-        printBoard(board);
-        total = getTotal(board);
-        cloneArray(board, clone);
+        logic_2048(board);
+        index = check_valid_2048(board, validBoard);
+        new_number_2048(board, validBoard, index);
+        print_board_2048(board);
+        total = get_total_2048(board);
+        clone_array_2048(board, clone);
         valid = 0;
-        valid += upArrow(clone);
-        cloneArray(board, clone);
-        valid += downArrow(clone);
-        cloneArray(board, clone);
-        valid += leftArrow(clone);
-        cloneArray(board, clone);
-        valid += rightArrow(clone);
+        valid += up_arrow_2048(clone);
+        clone_array_2048(board, clone);
+        valid += down_arrow_2048(clone);
+        clone_array_2048(board, clone);
+        valid += left_arrow_2048(clone);
+        clone_array_2048(board, clone);
+        valid += right_arrow_2048(clone);
         if (!valid) {
             printf("Oh no you lost! You finished with a score of %d\n", total);
             break;
@@ -39,7 +39,7 @@ int game_loop_2048 () {
     return 0;
 }
 
-void printBoard(int board[LENGTH][LENGTH]) {
+void print_board_2048(int board[LENGTH][LENGTH]) {
     int digits = 0;
     int temp = 0;
     int total = 7;
@@ -68,7 +68,7 @@ void printBoard(int board[LENGTH][LENGTH]) {
     printf("\n");
 }
 
-void fillBoard(int board[LENGTH][LENGTH]) {
+void fill_board_2048(int board[LENGTH][LENGTH]) {
     for (int i = 0; i < LENGTH; i++) {
         for (int j = 0; j < LENGTH; j++) {
             board[i][j] = 0;
@@ -76,7 +76,7 @@ void fillBoard(int board[LENGTH][LENGTH]) {
     }
 }
 
-void newNumber(int board[LENGTH][LENGTH], int validBoard[LENGTH*LENGTH][2], int index) {
+void new_number_2048(int board[LENGTH][LENGTH], int validBoard[LENGTH*LENGTH][2], int index) {
     int x = rand() % (index+1);
     int y;
     if (rand() % 10 == 1) {
@@ -87,7 +87,7 @@ void newNumber(int board[LENGTH][LENGTH], int validBoard[LENGTH*LENGTH][2], int 
     board[validBoard[x][0]][validBoard[x][1]] = y;
 }
 
-int checkValid(int board[LENGTH][LENGTH], int validBoard[LENGTH*LENGTH][2]) {
+int check_valid_2048(int board[LENGTH][LENGTH], int validBoard[LENGTH*LENGTH][2]) {
     int valid = -1;
     for (int i = 0; i < LENGTH; i++) {
         for (int j = 0; j < LENGTH; j++) {
@@ -101,7 +101,7 @@ int checkValid(int board[LENGTH][LENGTH], int validBoard[LENGTH*LENGTH][2]) {
     return valid;
 }
 
-int getTotal(int board[LENGTH][LENGTH]) {
+int get_total_2048(int board[LENGTH][LENGTH]) {
     int total = 0;
     for (int i = 0; i < LENGTH; i++) {
         for (int j = 0; j < LENGTH; j++) {
@@ -111,7 +111,7 @@ int getTotal(int board[LENGTH][LENGTH]) {
     return total;
 }
 
-void logic(int board[LENGTH][LENGTH]) {
+void logic_2048(int board[LENGTH][LENGTH]) {
     int input = 0;
     while (!input) {
         if (getchar() == '\033') {
@@ -119,25 +119,25 @@ void logic(int board[LENGTH][LENGTH]) {
             switch(getchar()) {
                 case 'A':
                     // code for arrow up
-                    if (upArrow(board)) {
+                    if (up_arrow_2048(board)) {
                         input = 1;
                     }
                     break;
                 case 'B':
                     // code for arrow down
-                    if (downArrow(board)) {
+                    if (down_arrow_2048(board)) {
                         input = 1;
                     }
                     break;
                 case 'C':
                     // code for arrow right
-                    if (rightArrow(board)) {
+                    if (right_arrow_2048(board)) {
                         input = 1;
                     }
                     break;
                 case 'D':
                     // code for arrow left
-                    if (leftArrow(board)) {
+                    if (left_arrow_2048(board)) {
                         input = 1;
                     }
                     break;
@@ -146,7 +146,7 @@ void logic(int board[LENGTH][LENGTH]) {
     }
 }
 
-int upArrow(int board[LENGTH][LENGTH]) {
+int up_arrow_2048(int board[LENGTH][LENGTH]) {
     int change = 0;
     for (int j = 0; j < LENGTH; j++) {
         for (int k = 0; k < LENGTH; k++) {
@@ -173,7 +173,7 @@ int upArrow(int board[LENGTH][LENGTH]) {
     return change;
 }
 
-int downArrow(int board[LENGTH][LENGTH]) {
+int down_arrow_2048(int board[LENGTH][LENGTH]) {
     int change = 0;
     for (int j = 0; j < LENGTH; j++) {
         for (int k = 0; k < LENGTH; k++) {
@@ -200,7 +200,7 @@ int downArrow(int board[LENGTH][LENGTH]) {
     return change;
 }
 
-int leftArrow(int board[LENGTH][LENGTH]) {
+int left_arrow_2048(int board[LENGTH][LENGTH]) {
     int change = 0;
     for (int i = 0; i < LENGTH; i++) {
         for (int k = 0; k < LENGTH; k++) {
@@ -227,7 +227,7 @@ int leftArrow(int board[LENGTH][LENGTH]) {
     return change;
 }
 
-int rightArrow(int board[LENGTH][LENGTH]) {
+int right_arrow_2048(int board[LENGTH][LENGTH]) {
     int change = 0;
     for (int i = 0; i < LENGTH; i++) {
         for (int k = 0; k < LENGTH; k++) {
@@ -254,7 +254,7 @@ int rightArrow(int board[LENGTH][LENGTH]) {
     return change;
 }
 
-void cloneArray(int board[LENGTH][LENGTH], int clone[LENGTH][LENGTH]) {
+void clone_array_2048(int board[LENGTH][LENGTH], int clone[LENGTH][LENGTH]) {
     for (int i = 0; i < LENGTH; i++) {
         for (int j = 0; j < LENGTH; j++) {
             clone[i][j] = board[i][j];

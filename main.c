@@ -5,11 +5,11 @@
 int main() {
     int game = -1;
     while (game < 0 || game > 2) {
-        printf("Choose a game!\n\n")
+        printf("Choose a game!\n\n");
         printf("************\n");
-        printf("Hangman: 0\n")
-        printf("2048: 1\n")
-        printf("Wordle: 2\n")
+        printf("Hangman: 0\n");
+        printf("2048: 1\n");
+        printf("Wordle: 2\n");
         printf("************\n");
         scanf("%d", &game);
     }

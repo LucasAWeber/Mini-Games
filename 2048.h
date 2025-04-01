@@ -6,14 +6,14 @@
 #define LENGTH 4
 
 int game_loop_2048 ();
-void printBoard(int [LENGTH][LENGTH]);
-void fillBoard(int [LENGTH][LENGTH]);
-void newNumber(int [LENGTH][LENGTH], int [LENGTH*LENGTH][2], int);
-int checkValid(int [LENGTH][LENGTH], int [LENGTH*LENGTH][2]);
-int getTotal(int [LENGTH][LENGTH]);
-void logic(int [LENGTH][LENGTH]);
-int upArrow(int [LENGTH][LENGTH]);
-int downArrow(int [LENGTH][LENGTH]);
-int leftArrow(int [LENGTH][LENGTH]);
-int rightArrow(int [LENGTH][LENGTH]);
-void cloneArray(int [LENGTH][LENGTH], int [LENGTH][LENGTH]);
+void print_board_2048(int [LENGTH][LENGTH]);
+void fill_board_2048(int [LENGTH][LENGTH]);
+void new_number_2048(int [LENGTH][LENGTH], int [LENGTH*LENGTH][2], int);
+int check_valid_2048(int [LENGTH][LENGTH], int [LENGTH*LENGTH][2]);
+int get_total_2048(int [LENGTH][LENGTH]);
+void logic_2048(int [LENGTH][LENGTH]);
+int up_arrow_2048(int [LENGTH][LENGTH]);
+int down_arrow_2048(int [LENGTH][LENGTH]);
+int left_arrow_2048(int [LENGTH][LENGTH]);
+int right_arrow_2048(int [LENGTH][LENGTH]);
+void clone_array_2048(int [LENGTH][LENGTH], int [LENGTH][LENGTH]);
