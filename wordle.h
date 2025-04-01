@@ -8,7 +8,7 @@
 #define GUESSES 6
 
 int game_loop_wordle();
-void readWords(char array[][STRINGLEN], char ptr[]);
-int validWordCheck(char array[][STRINGLEN], char word[]);
-int checkWord(char guess[STRINGLEN], char word[STRINGLEN], int guessArray[STRINGLEN-1]);
+void read_words_wordle(char array[][STRINGLEN], char ptr[]);
+int valid_word_check_wordle(char array[][STRINGLEN], char word[]);
+int check_word_wordle(char guess[STRINGLEN], char word[STRINGLEN], int guessArray[STRINGLEN-1]);
 void printGuesses(int guess[STRINGLEN-1]);

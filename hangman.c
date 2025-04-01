@@ -9,10 +9,10 @@ int game_loop_hangman() {
     char guess;
 
     strcpy(word,getpass("Word: "));
-    upper(word);
-    while (!validWord(word)) {
+    upper_hangman(word);
+    while (!valid_word_hangman(word)) {
         strcpy(word,getpass("Word: "));
-        upper(word);
+        upper_hangman(word);
     }
     
     for (int i=0;i<=strlen(word);i++) {
@@ -21,28 +21,28 @@ int game_loop_hangman() {
     }
 
     while (game) {
-        print(error, guessed);
+        print_hangman(error, guessed);
         printf("Guess: ");
         fflush(stdin);
         scanf("%c", &guess);
         guess = toupper(guess);
-        while (check(letterBank, guess) || !isalpha(guess)) {
+        while (check_hangman(letterBank, guess) || !isalpha(guess)) {
             printf("Guess: ");
             fflush(stdin);
             scanf("%c", &guess);
             guess = toupper(guess);
         }
 
-        error += logic(word, guessed, letterBank, guess);
+        error += logic_hangman(word, guessed, letterBank, guess);
 
         if (strcmp(word, guessed) == 0) {
-            print(error, guessed);
+            print_hangman(error, guessed);
             printf("You Won!\n");
             break;
         }
 
         if (error >= 6) {
-            print(error, word);
+            print_hangman(error, word);
             printf("You lost!\n");
             break;
         }
@@ -51,13 +51,13 @@ int game_loop_hangman() {
     return 0;
 }
 
-void upper(char word[MAX_CHARS]) {
+void upper_hangman(char word[MAX_CHARS]) {
     for (int i=0;i<strlen(word);i++) {
         word[i] = toupper(word[i]);
     }
 }
 
-void print(int error, char guessed[MAX_CHARS]) {
+void print_hangman(int error, char guessed[MAX_CHARS]) {
     printf("  ___\n");
     printf(" |   |\n");
     printf(" |   ");
@@ -76,10 +76,10 @@ void print(int error, char guessed[MAX_CHARS]) {
     printf("\n\n");
 }
 
-int logic(char word[MAX_CHARS], char guessed[MAX_CHARS], char letterBank[MAX_CHARS], char guess) {
+int logic_hangman(char word[MAX_CHARS], char guessed[MAX_CHARS], char letterBank[MAX_CHARS], char guess) {
     letterBank[guess-'A'] = guess;
-    if (check(word, guess)) {
-        for (int i=check(word, guess)-1;i<strlen(word);i++) {
+    if (check_hangman(word, guess)) {
+        for (int i=check_hangman(word, guess)-1;i<strlen(word);i++) {
             if (guess == word[i]) {
                 guessed[i] = guess;
             }
@@ -89,7 +89,7 @@ int logic(char word[MAX_CHARS], char guessed[MAX_CHARS], char letterBank[MAX_CHA
     return 1;
 }
 
-int check(char word[MAX_CHARS], char guess) {
+int check_hangman(char word[MAX_CHARS], char guess) {
     for (int i=0;i<strlen(word);i++) {
         if (guess == word[i]) {
             return i+1;
@@ -98,7 +98,7 @@ int check(char word[MAX_CHARS], char guess) {
     return 0;
 }
 
-int validWord(char word[MAX_CHARS]) {
+int valid_word_hangman(char word[MAX_CHARS]) {
     for (int i=0;i<strlen(word);i++) {
         if (!isalpha(word[i])) {
             return 0;

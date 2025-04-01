@@ -11,11 +11,10 @@ int game_loop_wordle()
 
     srand(time(0));
 
-    readWords(validWordsArray, "valid-wordle-words.txt");
-    readWords(wordAnswersArray, "wordle-answers-alphabetical.txt");
+    read_words_wordle(validWordsArray, "valid-wordle-words.txt");
+    read_words_wordle(wordAnswersArray, "wordle-answers-alphabetical.txt");
 
     strcpy(word, wordAnswersArray[rand() % 2315]);
-    //printf("%s\n", word);
 
     while (guesses > 0)
     {
@@ -24,9 +23,9 @@ int game_loop_wordle()
         {
             wordGuess[i] = tolower(wordGuess[i]);
         }
-        if (validWordCheck(validWordsArray, wordGuess))
+        if (valid_word_check_wordle(validWordsArray, wordGuess))
         {
-            if (checkWord(wordGuess, word, guessArray) == 1)
+            if (check_word_wordle(wordGuess, word, guessArray) == 1)
             {
                 printGuesses(guessArray);
                 printf("You got the word!\n");
@@ -44,7 +43,7 @@ int game_loop_wordle()
     return 0;
 }
 
-void readWords(char array[][STRINGLEN], char ptr[])
+void read_words_wordle(char array[][STRINGLEN], char ptr[])
 {
     FILE * fptr = fopen(ptr, "r");
     int i = 0;
@@ -57,7 +56,7 @@ void readWords(char array[][STRINGLEN], char ptr[])
     fclose(fptr);
 }
 
-int validWordCheck(char array[][STRINGLEN], char word[])
+int valid_word_check_wordle(char array[][STRINGLEN], char word[])
 {
     if (strlen(word) != STRINGLEN - 1)
     {
@@ -83,7 +82,7 @@ int validWordCheck(char array[][STRINGLEN], char word[])
     return 0;
 }
 
-int checkWord(char guess[STRINGLEN], char word[STRINGLEN], int guessArray[STRINGLEN-1])
+int check_word_wordle(char guess[STRINGLEN], char word[STRINGLEN], int guessArray[STRINGLEN-1])
 {
     int j;
     int visited[STRINGLEN-1] = {-1, -1, -1, -1, -1};
@@ -97,7 +96,6 @@ int checkWord(char guess[STRINGLEN], char word[STRINGLEN], int guessArray[STRING
         {
             guessArray[i] = 2;
         }
-        //printf("🟩🟩🟩🟩🟩\n");
         return 1;
     }
     for (int i = 0; i < STRINGLEN-1; i++)
@@ -108,7 +106,6 @@ int checkWord(char guess[STRINGLEN], char word[STRINGLEN], int guessArray[STRING
             {
                 if (i == j)
                 {
-                    //printf("🟩");
                     if (visited[j] != -1)
                     {
                         guessArray[visited[j]] = 0;
@@ -119,7 +116,6 @@ int checkWord(char guess[STRINGLEN], char word[STRINGLEN], int guessArray[STRING
                 }
                 else if (visited[j] == -1)
                 {
-                    //printf("🟨");
                     guessArray[i] = 1;
                     visited[j] = i;
                     break;
@@ -129,10 +125,8 @@ int checkWord(char guess[STRINGLEN], char word[STRINGLEN], int guessArray[STRING
         if (j == STRINGLEN-1)
         {
             guessArray[i] = 0;
-            //printf("⬛️");
         }
     }
-    //printf("\n");
     return 0;
 }
 

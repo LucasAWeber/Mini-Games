@@ -7,8 +7,8 @@
 #define MAX_CHARS 10
 
 int game_loop_hangman();
-void upper(char[MAX_CHARS]);
-void print(int, char[MAX_CHARS]);
-int logic(char[MAX_CHARS], char[MAX_CHARS], char[MAX_CHARS], char);
-int check(char[MAX_CHARS], char);
-int validWord(char[MAX_CHARS]);
+void upper_hangman(char[MAX_CHARS]);
+void print_hangman(int, char[MAX_CHARS]);
+int logic_hangman(char[MAX_CHARS], char[MAX_CHARS], char[MAX_CHARS], char);
+int check_hangman(char[MAX_CHARS], char);
+int valid_word_hangman(char[MAX_CHARS]);
